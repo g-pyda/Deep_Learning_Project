@@ -1,0 +1,60 @@
+seed: 42
+split_ratio:
+  train: 0.8
+  val: 0.1
+  test: 0.1
+
+directories:
+  raw_dir: "data/raw"
+  output_dir: "data/processed"
+
+datasets:
+  # kaggle_retail:
+  #   source_id: "ziya07/retail-food-package-expiry-date-dataset"
+  #   raw_path: "data/raw/kaggle_retail"
+  #   annotation_path: "expiry_data.csv"
+  #   images_dir: "images"
+  #   data_type: "kaggle_csv"
+
+  kaggle_korean1:
+    source_id: "kimhyeongminkhu/korean-expiry-date-ocr"
+    raw_path: "data/raw/kaggle_korean/expiry_date_detection_dataset/expiry_date_detection_dataset"
+    annotation_path: "" # Nested YOLO structure, no single file
+    images_dir: ""
+    data_type: "kaggle_yolo_nested"
+
+  kaggle_korean2:
+    source_id: "kimhyeongminkhu/korean-expiry-date-ocr"
+    raw_path: "data/raw/kaggle_korean/expiry_dmy_detection_dataset/expiry_dmy_detection_dataset"
+    annotation_path: "" # Nested YOLO structure, no single file
+    images_dir: ""
+    data_type: "kaggle_yolo_nested"
+
+  kaggle_korean3:
+    source_id: "kimhyeongminkhu/korean-expiry-date-ocr"
+    raw_path: "data/raw/kaggle_korean/expiry_region_detection_dataset/expiry_region_detection_dataset"
+    annotation_path: "" # Nested YOLO structure, no single file
+    images_dir: ""
+    data_type: "kaggle_yolo_nested"
+
+  hf_dimun1:
+    source_id: "dimun/ExpirationDate"
+    file_name: "Products-Real.zip"
+    raw_path: "data/raw/hf_dimun/Products-Real/evaluation"
+    annotation_path: "annotations.json"
+    images_dir: "images"
+    data_type: "hf_zip"
+
+  hf_dimun2:
+    source_id: "dimun/ExpirationDate"
+    file_name: "Products-Real.zip"
+    raw_path: "data/raw/hf_dimun/Products-Real/train"
+    annotation_path: "annotations.json"
+    images_dir: "images"
+    data_type: "hf_zip"
+
+  # github_expdate:
+  #   raw_path: "data/raw/github_expdate"
+  #   annotation_path: "labels.csv"
+  #   images_dir: ""
+  #   data_type: "github_csv"
