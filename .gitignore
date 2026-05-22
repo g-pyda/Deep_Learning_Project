@@ -1,2 +1,5 @@
-./data
+data/
 *.log
+outputs/
+*/__pycache__/
+*.pt
