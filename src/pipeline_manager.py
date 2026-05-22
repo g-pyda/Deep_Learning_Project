@@ -9,17 +9,34 @@ from pathlib import Path
 from models.date_detector import DateDetector
 from pipeline_ocr import ExpiryOCR
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s [%(levelname)s] %(message)s'
-)
+# 1. Default fallback logger (before config is loaded)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s')
 logger = logging.getLogger(__name__)
+
+def setup_logging(log_path: str):
+    """Configures logging to save to the specified file and output to console."""
+    log_dir = os.path.dirname(log_path)
+    if log_dir:
+        os.makedirs(log_dir, exist_ok=True)
+        
+    # force=True overwrites the default logger we set at the top of the file
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s [%(levelname)s] %(message)s',
+        handlers=[
+            logging.FileHandler(log_path),
+            logging.StreamHandler()
+        ],
+        force=True 
+    )
+    logger.info(f"Logging successfully configured. Saving logs to: {log_path}")
 
 class PipelineManager:
     """
     End-to-end pipeline orchestrator for Expiry Date Detection and Recognition.
     """
-    def __init__(self, detector_config_path: str, ocr_config_path: str):
+    def __init__(self, detector_config_path: str, ocr_config_path: str, log_path: str = "logs/pipeline.log"):
+        setup_logging(log_path)
         logger.info("Initializing Pipeline Manager...")
         
         # Load Detector
@@ -97,6 +114,7 @@ if __name__ == "__main__":
     parser.add_argument("--img", type=str, required=True, help="Path to the input image.")
     parser.add_argument("--det_config", type=str, default="config/detector_config.yaml", help="Path to detector config.")
     parser.add_argument("--ocr_config", type=str, default="config/ocr_config.yaml", help="Path to OCR config.")
+    parser.add_argument("--log_path", type=str, default="logs/pipeline.log", help="Path to the log file.")
     args = parser.parse_args()
     
     pipeline = PipelineManager(args.det_config, args.ocr_config)

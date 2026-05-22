@@ -1,4 +1,5 @@
 # OCR Engine Configuration
+logging_path: "logs/pipeline_manager.log"
 ocr:
   engine: "easyocr"
   languages: ["en"]       # Add more if needed, e.g., ["en", "ko"] for English and Korean

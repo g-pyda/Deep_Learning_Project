@@ -9,15 +9,27 @@ from pathlib import Path
 # Import our custom wrapper
 from models.date_detector import DateDetector
 
-# Logging configuration
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s [%(levelname)s] %(message)s',
-    handlers=[
-        logging.StreamHandler()
-    ]
-)
+# 1. Default fallback logger (before config is loaded)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s')
 logger = logging.getLogger(__name__)
+
+def setup_logging(log_path: str):
+    """Configures logging to save to the specified file and output to console."""
+    log_dir = os.path.dirname(log_path)
+    if log_dir:
+        os.makedirs(log_dir, exist_ok=True)
+        
+    # force=True overwrites the default logger we set at the top of the file
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s [%(levelname)s] %(message)s',
+        handlers=[
+            logging.FileHandler(log_path),
+            logging.StreamHandler()
+        ],
+        force=True 
+    )
+    logger.info(f"Logging successfully configured. Saving logs to: {log_path}")
 
 def load_config(config_path: str) -> dict:
     """Loads the YAML configuration file."""
@@ -28,10 +40,13 @@ def load_config(config_path: str) -> dict:
         return yaml.safe_load(f)
 
 def main(config_path: str):
-    logger.info("=== Starting Detector Pipeline ===")
-    
     # 1. Load Configuration
     config = load_config(config_path)
+    # Setup logging based on config path
+    log_path = config.get('logging_path', 'logs/default.log')
+    setup_logging(log_path)
+
+    logger.info("=== Starting Detector Pipeline ===")
     
     # 2. Setup Output Directories (run_[TIMESTAMP])
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")

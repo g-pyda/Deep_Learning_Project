@@ -6,27 +6,35 @@ import random
 import argparse
 import shutil
 import zipfile
-import csv
 from pathlib import Path
 from PIL import Image
 
-# Importers for automatic dataset downloading
 import kagglehub
 from huggingface_hub import hf_hub_download
 
-# Logging configuration
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s [%(levelname)s] %(message)s',
-    handlers=[
-        logging.FileHandler("dataset_pipeline.log"),
-        logging.StreamHandler()
-    ]
-)
+# 1. Default fallback logger (before config is loaded)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s')
 logger = logging.getLogger(__name__)
 
+def setup_logging(log_path: str):
+    """Configures logging to save to the specified file and output to console."""
+    log_dir = os.path.dirname(log_path)
+    if log_dir:
+        os.makedirs(log_dir, exist_ok=True)
+        
+    # force=True overwrites the default logger we set at the top of the file
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s [%(levelname)s] %(message)s',
+        handlers=[
+            logging.FileHandler(log_path),
+            logging.StreamHandler()
+        ],
+        force=True 
+    )
+    logger.info(f"Logging successfully configured. Saving logs to: {log_path}")
+
 def load_config(config_path: str) -> dict:
-    """Loads the YAML configuration file."""
     if not os.path.exists(config_path):
         logger.error(f"Configuration file does not exist: {config_path}")
         raise FileNotFoundError(f"Missing file: {config_path}")
@@ -38,7 +46,6 @@ def load_config(config_path: str) -> dict:
 # ==============================================================================
 
 def download_datasets(config: dict):
-    """Downloads and extracts datasets based on their configuration type."""
     logger.info("=== Starting Download Phase ===")
     datasets_cfg = config.get('datasets', {})
     
@@ -55,7 +62,7 @@ def download_datasets(config: dict):
         logger.info(f"[{name}] Downloading dataset ({data_type})...")
 
         try:
-            if data_type in ['kaggle_csv', 'kaggle_yolo_nested']:
+            if data_type == 'kaggle_yolo_nested':
                 cache_path = kagglehub.dataset_download(source_id)
                 shutil.copytree(cache_path, raw_path, dirs_exist_ok=True)
                 logger.info(f"[{name}] Successfully copied from Kaggle cache to {raw_path}")
@@ -67,10 +74,7 @@ def download_datasets(config: dict):
                 with zipfile.ZipFile(zip_path, 'r') as zip_ref:
                     zip_ref.extractall(raw_path)
                 logger.info(f"[{name}] Successfully extracted to {raw_path}")
-
-            elif data_type == 'github_csv':
-                logger.info(f"[{name}] GitHub downloads disabled by user. Please ensure data is manually placed in {raw_path}.")
-            
+                
             else:
                 logger.warning(f"[{name}] Unknown data_type: {data_type}")
                 
@@ -81,63 +85,24 @@ def download_datasets(config: dict):
 # PARSING LOGIC (TO UNIFIED FORMAT)
 # ==============================================================================
 
-def parse_kaggle_csv(ds_cfg: dict) -> list:
-    dataset = []
-    base_dir = Path(ds_cfg['raw_path'])
-    csv_path = base_dir / ds_cfg['annotation_path']
-    img_dir = base_dir / ds_cfg['images_dir']
-
-    if not csv_path.exists():
-        logger.warning(f"[kaggle_csv] Missing CSV file: {csv_path}")
-        return dataset
-
-    try:
-        with open(csv_path, 'r', encoding='utf-8') as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                # Adjust these column names based on the actual Kaggle CSV structure
-                img_path = img_dir / row.get('filename', row.get('image', ''))
-                if not img_path.exists():
-                    continue
-                
-                xmin = float(row.get('xmin', 0))
-                ymin = float(row.get('ymin', 0))
-                xmax = float(row.get('xmax', 0))
-                ymax = float(row.get('ymax', 0))
-                text = row.get('text', '')
-
-                dataset.append({
-                    "original_path": str(img_path),
-                    "bbox": [xmin, ymin, xmax, ymax],
-                    "text": text,
-                    "source": "kaggle_retail"
-                })
-    except Exception as e:
-        logger.error(f"[kaggle_csv] Parsing error: {e}")
-
-    return dataset
-
 def parse_yolo_nested(ds_cfg: dict) -> list:
     dataset = []
     current_working_directory = os.getcwd()
     full_path = os.path.join(current_working_directory, ds_cfg['raw_path'])
     base_dir = Path(full_path)
-    labels_dir = base_dir / "labels"
     
-    print(f"Labels directory target: {labels_dir}")
-    if labels_dir.exists():
-        print(f"Contents of labels directory: {os.listdir(labels_dir)}")
-    else:
-        logger.error(f"Labels directory does not exist: {labels_dir}")
+    if not base_dir.exists():
+        logger.error(f"[yolo_nested] Base directory does not exist: {base_dir}")
         return dataset
     
-    # Recursively find all .txt files inside the labels folder structure
-    for txt_path in labels_dir.rglob("*.txt"):
-        # Safely convert path to string to use replace rules
+    # Recursively find all .txt files inside any 'labels' folder across all sub-datasets
+    for txt_path in base_dir.rglob("*.txt"):
         txt_path_str = str(txt_path)
         
-        # Mirror the text path layout over to the images directory structure
-        # Example conversion: .../labels/test/001.txt -> .../images/test/001.<ext>
+        # Skip files that are not within a 'labels' directory
+        if f"{os.sep}labels{os.sep}" not in txt_path_str:
+            continue
+            
         img_path = None
         for ext in ['.jpg', '.jpeg', '.png', '.JPG', '.JPEG', '.PNG']:
             possible_img_str = txt_path_str.replace(os.sep + 'labels' + os.sep, os.sep + 'images' + os.sep).replace('.txt', ext)
@@ -147,7 +112,6 @@ def parse_yolo_nested(ds_cfg: dict) -> list:
                 break
                 
         if not img_path:
-            logger.warning(f"[yolo_nested] Image counterpart missing for label: {txt_path.name}")
             continue
             
         try:
@@ -160,7 +124,6 @@ def parse_yolo_nested(ds_cfg: dict) -> list:
                     if len(parts) >= 5:
                         x_center, y_center, w, h = map(float, parts[1:5])
                         
-                        # Convert normalized YOLO format back to absolute pixel coordinates
                         xmin = (x_center - w / 2.0) * img_w
                         ymin = (y_center - h / 2.0) * img_h
                         xmax = (x_center + w / 2.0) * img_w
@@ -169,82 +132,53 @@ def parse_yolo_nested(ds_cfg: dict) -> list:
                         dataset.append({
                             "original_path": str(img_path),
                             "bbox": [xmin, ymin, xmax, ymax],
-                            "text": "",  # YOLO formats lack textual transcription properties
+                            "text": "", 
                             "source": "kaggle_korean"
                         })
         except Exception as e:
             logger.error(f"[yolo_nested] Error processing {txt_path}: {e}")
             
-    logger.info(f"[yolo_nested] Parsed {len(dataset)} records from YOLO nested structure.")
+    logger.info(f"[yolo_nested] Parsed {len(dataset)} records from YOLO nested structures.")
     return dataset
 
 def parse_hf_zip(ds_cfg: dict) -> list:
-    """Parses the HuggingFace dimun/ExpirationDate dataset using its actual JSON structure."""
     dataset = []
     base_dir = Path(ds_cfg['raw_path'])
-    json_path = base_dir / ds_cfg['annotation_path']
-    img_dir = base_dir / ds_cfg['images_dir']
-
-    if not json_path.exists():
-        logger.warning(f"[hf_zip] Missing JSON file: {json_path}")
+    
+    if not base_dir.exists():
+        logger.warning(f"[hf_zip] Base directory does not exist: {base_dir}")
         return dataset
 
-    try:
-        with open(json_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-            
-        # The JSON root is a dictionary where keys are image file names
-        for filename, img_meta in data.items():
-            img_path = img_dir / filename
-            if not img_path.exists():
-                logger.error(f"[hf_zip] Image file missing: {img_path}")
-                continue
+    # Recursively find all annotations.json files (handles train/ and evaluation/ automatically)
+    for json_path in base_dir.rglob("annotations.json"):
+        img_dir = json_path.parent / "images"
+        
+        try:
+            with open(json_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
                 
-            # Iterate through the main annotations list
-            annotations = img_meta.get("ann", [])
-            for ann in annotations:
-                # We only want the full expiration date bounding box
-                if ann.get("cls") == "exp":
-                    bbox = ann.get("bbox")  # Format: [xmin, ymin, xmax, ymax]
-                    text = ann.get("transcription", "")
-                    
-                    if bbox and len(bbox) == 4:
-                        dataset.append({
-                            "original_path": str(img_path),
-                            "bbox": [float(bbox[0]), float(bbox[1]), float(bbox[2]), float(bbox[3])],
-                            "text": str(text),
-                            "source": "hf_dimun"
-                        })
-                        
-    except Exception as e:
-        logger.error(f"[hf_zip] JSON parsing error: {e}")
-    return dataset
-
-def parse_github_csv(ds_cfg: dict) -> list:
-    dataset = []
-    base_dir = Path(ds_cfg['raw_path'])
-    csv_path = base_dir / ds_cfg['annotation_path']
-
-    if not csv_path.exists():
-        return dataset
-
-    try:
-        with open(csv_path, 'r', encoding='utf-8') as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                img_path = base_dir / row['image_filename']
+            for filename, img_meta in data.items():
+                img_path = img_dir / filename
                 if not img_path.exists():
                     continue
-                
-                dataset.append({
-                    "original_path": str(img_path),
-                    "bbox": [float(row['xmin']), float(row['ymin']), float(row['xmax']), float(row['ymax'])],
-                    "text": row['text'],
-                    "source": "github_expdate"
-                })
-    except Exception as e:
-        logger.error(f"[github_csv] CSV parsing error: {e}")
+                    
+                annotations = img_meta.get("ann", [])
+                for ann in annotations:
+                    if ann.get("cls") == "exp":
+                        bbox = ann.get("bbox")
+                        text = ann.get("transcription", "")
+                        
+                        if bbox and len(bbox) == 4:
+                            dataset.append({
+                                "original_path": str(img_path),
+                                "bbox": [float(bbox[0]), float(bbox[1]), float(bbox[2]), float(bbox[3])],
+                                "text": str(text),
+                                "source": "hf_dimun"
+                            })
+        except Exception as e:
+            logger.error(f"[hf_zip] JSON parsing error in {json_path}: {e}")
 
+    logger.info(f"[hf_zip] Parsed {len(dataset)} records from HF JSON structures.")
     return dataset
 
 # ==============================================================================
@@ -320,7 +254,6 @@ def save_as_yolo(all_data: list, config: dict):
 
         logger.info(f"Saved {saved_count} records to split '{split_name}'.")
 
-    # Generate YOLO dataset.yaml
     yaml_content = {
         'path': str(out_dir.absolute()),
         'train': 'images/train',
@@ -339,11 +272,13 @@ def save_as_yolo(all_data: list, config: dict):
 def main(config_path: str, mode: str):
     config = load_config(config_path)
 
-    # 1. Download Mode
+    # Setup logging based on config path
+    log_path = config.get('logging_path', 'logs/default.log')
+    setup_logging(log_path)
+
     if mode in ['download', 'all']:
         download_datasets(config)
 
-    # 2. Preprocess Mode
     if mode in ['preprocess', 'all']:
         logger.info("=== Starting Parsing Phase ===")
         all_data = []
@@ -353,18 +288,13 @@ def main(config_path: str, mode: str):
             data_type = ds_cfg.get('data_type')
             logger.info(f"Parsing {name}...")
 
-            if data_type == 'kaggle_csv':
-                all_data.extend(parse_kaggle_csv(ds_cfg))
-            elif data_type == 'kaggle_yolo_nested':
+            if data_type == 'kaggle_yolo_nested':
                 all_data.extend(parse_yolo_nested(ds_cfg))
             elif data_type == 'hf_zip':
                 all_data.extend(parse_hf_zip(ds_cfg))
-            elif data_type == 'github_csv':
-                all_data.extend(parse_github_csv(ds_cfg))
         
         logger.info(f"Total unified annotations collected: {len(all_data)}")
         
-        # 3. Export Data
         save_as_yolo(all_data, config)
 
 if __name__ == "__main__":
@@ -375,7 +305,7 @@ if __name__ == "__main__":
         type=str, 
         choices=['download', 'preprocess', 'all'], 
         default='all',
-        help="Action to perform: 'download' (only fetch data), 'preprocess' (only parse existing data), or 'all'."
+        help="Action to perform: 'download', 'preprocess', or 'all'."
     )
     args = parser.parse_args()
     
