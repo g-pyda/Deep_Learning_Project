@@ -95,10 +95,15 @@ def parse_yolo_nested(ds_cfg: dict) -> list:
         logger.error(f"[yolo_nested] Base directory does not exist: {base_dir}")
         return dataset
     
-    # Recursively find all .txt files inside any 'labels' folder across all sub-datasets
+    # Recursively find all .txt files inside any 'labels' folder
     for txt_path in base_dir.rglob("*.txt"):
         txt_path_str = str(txt_path)
         
+        # --- FILTR FOLDERU REGION ---
+        # Ignorujemy wszystko, co nie ma słowa 'region' w ścieżce (czyli pomijamy foldery dmy i date_detection)
+        if 'region' not in txt_path_str.lower():
+            continue
+            
         # Skip files that are not within a 'labels' directory
         if f"{os.sep}labels{os.sep}" not in txt_path_str:
             continue
@@ -138,7 +143,7 @@ def parse_yolo_nested(ds_cfg: dict) -> list:
         except Exception as e:
             logger.error(f"[yolo_nested] Error processing {txt_path}: {e}")
             
-    logger.info(f"[yolo_nested] Parsed {len(dataset)} records from YOLO nested structures.")
+    logger.info(f"[yolo_nested] Parsed {len(dataset)} records from YOLO nested structures (filtered by 'region').")
     return dataset
 
 def parse_hf_zip(ds_cfg: dict) -> list:
