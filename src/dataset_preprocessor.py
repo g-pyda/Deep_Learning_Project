@@ -100,7 +100,6 @@ def parse_yolo_nested(ds_cfg: dict) -> list:
         txt_path_str = str(txt_path)
         
         # --- FILTR FOLDERU REGION ---
-        # Ignorujemy wszystko, co nie ma słowa 'region' w ścieżce (czyli pomijamy foldery dmy i date_detection)
         if 'region' not in txt_path_str.lower():
             continue
             
@@ -127,6 +126,13 @@ def parse_yolo_nested(ds_cfg: dict) -> list:
                 for line in f:
                     parts = line.strip().split()
                     if len(parts) >= 5:
+                        class_id = int(parts[0])
+                        
+                        # --- FILTR KLASY 0 ---
+                        # Ignorujemy każdą ramkę, która nie ma etykiety 0
+                        if class_id != 0:
+                            continue
+
                         x_center, y_center, w, h = map(float, parts[1:5])
                         
                         xmin = (x_center - w / 2.0) * img_w
@@ -143,7 +149,7 @@ def parse_yolo_nested(ds_cfg: dict) -> list:
         except Exception as e:
             logger.error(f"[yolo_nested] Error processing {txt_path}: {e}")
             
-    logger.info(f"[yolo_nested] Parsed {len(dataset)} records from YOLO nested structures (filtered by 'region').")
+    logger.info(f"[yolo_nested] Parsed {len(dataset)} records from YOLO nested structures (filtered by 'region' and class '0').")
     return dataset
 
 def parse_hf_zip(ds_cfg: dict) -> list:

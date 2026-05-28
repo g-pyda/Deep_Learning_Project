@@ -1,0 +1,14 @@
+logging_path: logs/train_detector.log
+model:
+  weights: yolov8s.pt
+data:
+  dataset_yaml: data/processed/dataset.yaml
+training:
+  epochs: 50
+  batch_size: 16
+  img_size: 640
+  optimizer: Adam
+  learning_rate: 0.001
+  patience: 10
+  device: '3'
+  workers: 4

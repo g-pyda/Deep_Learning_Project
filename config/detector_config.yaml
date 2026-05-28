@@ -9,8 +9,8 @@ data:
 
 # Training Hyperparameters
 training:
-  epochs: 50
-  batch_size: 16
+  epochs: 200
+  batch_size: 32
   img_size: 640
   optimizer: "Adam"     # YOLOv8 supports: SGD, Adam, AdamW, NAdam, RAdam, RMSProp
   learning_rate: 0.001
