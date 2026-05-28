@@ -1,0 +1,14 @@
+logging_path: logs/train_detector.log
+model:
+  weights: runs\detect\outputs\detector\run_20260522_160740\weights\best.pt
+data:
+  dataset_yaml: data/processed/dataset.yaml
+training:
+  epochs: 50
+  batch_size: 16
+  img_size: 640
+  optimizer: Adam
+  learning_rate: 0.001
+  patience: 10
+  device: ''
+  workers: 4

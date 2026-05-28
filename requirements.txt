@@ -1,0 +1,9 @@
+torch>=2.0.0
+torchvision
+ultralytics
+easyocr
+opencv-python-headless  # Wersja bez zależności GUI - absolutnie konieczna na klastrze
+pyyaml
+kagglehub
+huggingface_hub
+Pillow
