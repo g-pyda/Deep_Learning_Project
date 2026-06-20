@@ -1,0 +1,3 @@
+# YOLOv8 Architecture Configuration
+model:
+  weights: '/bakha/vhome/gpyda/scratch/Deep_Learning_Project/runs/detect/outputs/detector/run_20260620_170343/weights/best.pt'

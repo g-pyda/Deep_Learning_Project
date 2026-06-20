@@ -1,0 +1,12 @@
+# OCR Engine Configuration
+logging_path: "logs/ocr_pipe/pipeline_manager_korean.log"
+ocr:
+  engine: "easyocr"
+  languages: ["en"]       # Add more if needed, e.g., ["en", "ko"] for English and Korean
+  use_gpu: true
+  
+# Image Processing Parameters
+preprocessing:
+  deskew: true
+  deskew_angle_limit: 45  # Ignore angles larger than this (assume false positive rotation)
+  padding: 5              # Pixels to pad after deskewing

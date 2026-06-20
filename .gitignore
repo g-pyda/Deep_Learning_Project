@@ -1,5 +1,6 @@
-data/
-logs/
+data/raw/
+data/processed/
+data/processed_only_dimun/
+data/processed_only_korean/
 __pycache__/
-*.pt
 .venv/

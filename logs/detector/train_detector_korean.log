@@ -1,0 +1,35 @@
+2026-06-20 17:04:48,056 [INFO] Logging successfully configured. Saving logs to: logs/detector/train_detector_korean.log
+2026-06-20 17:04:48,057 [INFO] === Starting Detector Pipeline ===
+2026-06-20 17:04:48,057 [INFO] Configuration saved to outputs/detector/run_20260620_170448/detector_config.yaml
+2026-06-20 17:04:48,057 [INFO] Initializing DateDetector with weights: yolov8m.pt
+2026-06-20 17:04:48,122 [INFO] Initiating YOLO training engine...
+2026-06-20 17:04:48,122 [INFO] Starting YOLO training process...
+2026-06-20 17:05:28,991 [INFO] Epoch [1/200] Completed | mAP@50: 0.6406 | mAP@50-95: 0.3592
+2026-06-20 17:06:05,110 [INFO] Epoch [2/200] Completed | mAP@50: 0.8181 | mAP@50-95: 0.5220
+2026-06-20 17:06:40,068 [INFO] Epoch [3/200] Completed | mAP@50: 0.7490 | mAP@50-95: 0.4387
+2026-06-20 17:07:15,608 [INFO] Epoch [4/200] Completed | mAP@50: 0.8554 | mAP@50-95: 0.5024
+2026-06-20 17:07:51,633 [INFO] Epoch [5/200] Completed | mAP@50: 0.8871 | mAP@50-95: 0.5972
+2026-06-20 17:08:26,754 [INFO] Epoch [6/200] Completed | mAP@50: 0.8663 | mAP@50-95: 0.5659
+2026-06-20 17:09:01,813 [INFO] Epoch [7/200] Completed | mAP@50: 0.8729 | mAP@50-95: 0.5777
+2026-06-20 17:09:37,779 [INFO] Epoch [8/200] Completed | mAP@50: 0.9012 | mAP@50-95: 0.6206
+2026-06-20 17:10:12,800 [INFO] Epoch [9/200] Completed | mAP@50: 0.8911 | mAP@50-95: 0.5843
+2026-06-20 17:10:47,959 [INFO] Epoch [10/200] Completed | mAP@50: 0.8748 | mAP@50-95: 0.6105
+2026-06-20 17:11:23,899 [INFO] Epoch [11/200] Completed | mAP@50: 0.9109 | mAP@50-95: 0.6438
+2026-06-20 17:11:59,872 [INFO] Epoch [12/200] Completed | mAP@50: 0.9223 | mAP@50-95: 0.6612
+2026-06-20 17:12:34,918 [INFO] Epoch [13/200] Completed | mAP@50: 0.9166 | mAP@50-95: 0.6359
+2026-06-20 17:13:09,991 [INFO] Epoch [14/200] Completed | mAP@50: 0.9311 | mAP@50-95: 0.6377
+2026-06-20 17:13:45,962 [INFO] Epoch [15/200] Completed | mAP@50: 0.9432 | mAP@50-95: 0.6786
+2026-06-20 17:14:21,030 [INFO] Epoch [16/200] Completed | mAP@50: 0.9023 | mAP@50-95: 0.5732
+2026-06-20 17:14:56,094 [INFO] Epoch [17/200] Completed | mAP@50: 0.9309 | mAP@50-95: 0.6430
+2026-06-20 17:15:31,256 [INFO] Epoch [18/200] Completed | mAP@50: 0.9334 | mAP@50-95: 0.6520
+2026-06-20 17:16:06,339 [INFO] Epoch [19/200] Completed | mAP@50: 0.9262 | mAP@50-95: 0.6441
+2026-06-20 17:16:41,454 [INFO] Epoch [20/200] Completed | mAP@50: 0.9442 | mAP@50-95: 0.6696
+2026-06-20 17:17:16,517 [INFO] Epoch [21/200] Completed | mAP@50: 0.9398 | mAP@50-95: 0.6653
+2026-06-20 17:17:51,551 [INFO] Epoch [22/200] Completed | mAP@50: 0.9351 | mAP@50-95: 0.6440
+2026-06-20 17:18:26,596 [INFO] Epoch [23/200] Completed | mAP@50: 0.9251 | mAP@50-95: 0.6446
+2026-06-20 17:19:01,756 [INFO] Epoch [24/200] Completed | mAP@50: 0.9333 | mAP@50-95: 0.6394
+2026-06-20 17:19:36,788 [INFO] Epoch [25/200] Completed | mAP@50: 0.9509 | mAP@50-95: 0.6602
+2026-06-20 17:19:40,605 [INFO] Epoch [26/200] Completed | mAP@50: 0.9432 | mAP@50-95: 0.6786
+2026-06-20 17:19:41,977 [INFO] === Training Completed ===
+2026-06-20 17:19:41,977 [INFO] Best weights and metrics are saved in: outputs/detector/run_20260620_170448/weights/best.pt
+2026-06-20 17:19:41,977 [INFO] Custom progress plot is saved at: outputs/detector/run_20260620_170448/custom_training_progress.png
