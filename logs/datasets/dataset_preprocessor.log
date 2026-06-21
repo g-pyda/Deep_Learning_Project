@@ -1,0 +1,33 @@
+2026-06-20 17:00:43,372 [INFO] Logging successfully configured. Saving logs to: logs/datasets/dataset_preprocessor.log
+2026-06-20 17:00:43,372 [INFO] === Starting Parsing Phase ===
+2026-06-20 17:00:43,373 [INFO] Parsing kaggle_korean...
+2026-06-20 17:00:43,732 [INFO] [yolo_nested] Parsed 4668 records from YOLO nested structures (filtered by 'region' and class '0').
+2026-06-20 17:00:43,732 [INFO] Total unified annotations collected: 4668
+2026-06-20 17:00:43,732 [INFO] === Starting Export Phase (YOLOv8 Format) ===
+2026-06-20 17:00:43,733 [WARNING] Output directory data/processed_only_korean already exists. Cleaning up...
+2026-06-20 17:00:53,544 [INFO] Saved 3734 records to split 'train'.
+2026-06-20 17:00:57,385 [INFO] Saved 466 records to split 'val'.
+2026-06-20 17:01:00,926 [INFO] Saved 468 records to split 'test'.
+2026-06-20 17:01:00,926 [INFO] YOLO configuration saved to data/processed_only_korean/dataset.yaml
+2026-06-20 17:01:35,679 [INFO] Logging successfully configured. Saving logs to: logs/datasets/dataset_preprocessor.log
+2026-06-20 17:01:35,679 [INFO] === Starting Parsing Phase ===
+2026-06-20 17:01:35,679 [INFO] Parsing hf_dimun...
+2026-06-20 17:01:35,715 [INFO] [hf_zip] Parsed 665 records from HF JSON structures.
+2026-06-20 17:01:35,716 [INFO] Total unified annotations collected: 665
+2026-06-20 17:01:35,716 [INFO] === Starting Export Phase (YOLOv8 Format) ===
+2026-06-20 17:01:35,716 [WARNING] Output directory data/processed_only_dimun already exists. Cleaning up...
+2026-06-20 17:01:37,045 [INFO] Saved 532 records to split 'train'.
+2026-06-20 17:01:37,076 [INFO] Saved 66 records to split 'val'.
+2026-06-20 17:01:37,107 [INFO] Saved 67 records to split 'test'.
+2026-06-20 17:01:37,107 [INFO] YOLO configuration saved to data/processed_only_dimun/dataset.yaml
+2026-06-20 17:03:59,961 [INFO] Logging successfully configured. Saving logs to: logs/datasets/dataset_preprocessor.log
+2026-06-20 17:03:59,961 [INFO] === Starting Parsing Phase ===
+2026-06-20 17:03:59,961 [INFO] Parsing kaggle_korean...
+2026-06-20 17:04:00,344 [INFO] [yolo_nested] Parsed 4668 records from YOLO nested structures (filtered by 'region' and class '0').
+2026-06-20 17:04:00,344 [INFO] Total unified annotations collected: 4668
+2026-06-20 17:04:00,344 [INFO] === Starting Export Phase (YOLOv8 Format) ===
+2026-06-20 17:04:00,345 [WARNING] Output directory data/processed_only_korean already exists. Cleaning up...
+2026-06-20 17:04:02,330 [INFO] Saved 3734 records to split 'train'.
+2026-06-20 17:04:02,529 [INFO] Saved 466 records to split 'val'.
+2026-06-20 17:04:02,729 [INFO] Saved 468 records to split 'test'.
+2026-06-20 17:04:02,730 [INFO] YOLO configuration saved to data/processed_only_korean/dataset.yaml

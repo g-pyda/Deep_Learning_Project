@@ -58,10 +58,18 @@ class PipelineManager:
         with open(config_path, 'r', encoding='utf-8') as f:
             return yaml.safe_load(f)
 
+    def _annotate_image(self, image, bbox):
+        """Returns a copy of the image with the detected bounding box drawn."""
+        annotated = image.copy()
+        x1, y1, x2, y2 = bbox
+        cv2.rectangle(annotated, (x1, y1), (x2, y2), (0, 255, 0), 2)
+        return annotated
+
     def run_pipeline(self, image_path: str) -> dict:
         """
         Executes the full pipeline on a single image.
-        Returns a dictionary containing the detected text, confidence, and bounding box coordinates.
+        Returns a dictionary containing the loaded image, detected bounding box,
+        OCR text, confidence, cropped ROI, and annotated image.
         """
         logger.info(f"Processing image: {image_path}")
         
@@ -78,7 +86,14 @@ class PipelineManager:
         # Check if any objects were detected
         if len(results) == 0 or len(results[0].boxes) == 0:
             logger.warning("No expiry date found on the image.")
-            return {"text": None, "bbox": None, "confidence": 0.0}
+            return {
+                "image": image,
+                "crop": None,
+                "annotated_image": image.copy(),
+                "text": None,
+                "bbox": None,
+                "confidence": 0.0
+            }
 
         # Take the detection with the highest confidence (usually the first one)
         best_box = results[0].boxes[0]
@@ -97,13 +112,23 @@ class PipelineManager:
 
         if crop.size == 0:
             logger.warning("Cropped bounding box is empty.")
-            return {"text": None, "bbox": [x1, y1, x2, y2], "confidence": confidence}
+            return {
+                "image": image,
+                "crop": None,
+                "annotated_image": image.copy(),
+                "text": None,
+                "bbox": [x1, y1, x2, y2],
+                "confidence": confidence
+            }
 
         # 3. Process Crop & OCR
         recognized_text = self.ocr_engine.process(crop)
         logger.info(f"Extracted Text: {recognized_text}")
 
         return {
+            "image": image,
+            "crop": crop,
+            "annotated_image": self._annotate_image(image, [x1, y1, x2, y2]),
             "text": recognized_text,
             "bbox": [x1, y1, x2, y2],
             "confidence": confidence

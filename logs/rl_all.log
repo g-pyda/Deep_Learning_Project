@@ -1,0 +1,81 @@
+2026-06-20 18:05:16,986 [INFO] Logging successfully configured. Saving logs to: logs/rl_all.log
+2026-06-20 18:05:16,987 [INFO] Initializing Pipeline Manager...
+2026-06-20 18:05:16,988 [INFO] Initializing DateDetector with weights: /bakha/vhome/gpyda/scratch/Deep_Learning_Project/runs/detect/outputs/detector/run_20260620_170339/weights/best.pt
+2026-06-20 18:05:17,284 [INFO] Initializing EasyOCR with languages: ['en']
+2026-06-20 18:05:19,322 [INFO] Pipeline initialized successfully.
+2026-06-20 18:05:19,324 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164132.jpg
+2026-06-20 18:05:20,770 [INFO] Extracted Text: 26-05-2027
+2026-06-20 18:05:20,788 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164142.jpg
+2026-06-20 18:05:20,920 [INFO] Extracted Text: 62/08/27
+2026-06-20 18:05:20,931 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164152.jpg
+2026-06-20 18:05:21,051 [INFO] Extracted Text: 
+2026-06-20 18:05:21,061 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164156.jpg
+2026-06-20 18:05:21,197 [INFO] Extracted Text: icem: 10.2028
+2026-06-20 18:05:21,207 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164210.jpg
+2026-06-20 18:05:21,303 [INFO] Extracted Text: 28-04-202-
+2026-06-20 18:05:21,312 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164221.jpg
+2026-06-20 18:05:21,407 [WARNING] No expiry date found on the image.
+2026-06-20 18:05:21,416 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164242.jpg
+2026-06-20 18:05:21,546 [INFO] Extracted Text: 
+2026-06-20 18:05:21,557 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164253.jpg
+2026-06-20 18:05:21,692 [INFO] Extracted Text: 2306.2026
+2026-06-20 18:05:21,701 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164311.jpg
+2026-06-20 18:05:21,787 [WARNING] No expiry date found on the image.
+2026-06-20 18:05:21,796 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164318.jpg
+2026-06-20 18:05:21,881 [WARNING] No expiry date found on the image.
+2026-06-20 18:05:21,890 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/73e2498c-93f5-4aec-b839-bc10c3358524.jpg
+2026-06-20 18:05:21,955 [INFO] Extracted Text: 03/2028
+2026-06-20 18:05:47,671 [INFO] Logging successfully configured. Saving logs to: logs/rl_all.log
+2026-06-20 18:05:47,672 [INFO] Initializing Pipeline Manager...
+2026-06-20 18:05:47,673 [INFO] Initializing DateDetector with weights: /bakha/vhome/gpyda/scratch/Deep_Learning_Project/runs/detect/outputs/detector/run_20260620_170339/weights/best.pt
+2026-06-20 18:05:47,757 [INFO] Initializing EasyOCR with languages: ['en']
+2026-06-20 18:05:48,922 [INFO] Pipeline initialized successfully.
+2026-06-20 18:05:48,924 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164132.jpg
+2026-06-20 18:05:49,179 [INFO] Extracted Text: 26-05-2027
+2026-06-20 18:05:49,184 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164142.jpg
+2026-06-20 18:05:49,255 [INFO] Extracted Text: 62/08/27
+2026-06-20 18:05:49,260 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164152.jpg
+2026-06-20 18:05:49,324 [INFO] Extracted Text: 
+2026-06-20 18:05:49,328 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164156.jpg
+2026-06-20 18:05:49,398 [INFO] Extracted Text: icem: 10.2028
+2026-06-20 18:05:49,402 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164210.jpg
+2026-06-20 18:05:49,464 [INFO] Extracted Text: 28-04-202-
+2026-06-20 18:05:49,469 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164221.jpg
+2026-06-20 18:05:49,531 [WARNING] No expiry date found on the image.
+2026-06-20 18:05:49,535 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164242.jpg
+2026-06-20 18:05:49,604 [INFO] Extracted Text: 
+2026-06-20 18:05:49,610 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164253.jpg
+2026-06-20 18:05:49,678 [INFO] Extracted Text: 2306.2026
+2026-06-20 18:05:49,683 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164311.jpg
+2026-06-20 18:05:49,742 [WARNING] No expiry date found on the image.
+2026-06-20 18:05:49,747 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164318.jpg
+2026-06-20 18:05:49,803 [WARNING] No expiry date found on the image.
+2026-06-20 18:05:49,807 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/73e2498c-93f5-4aec-b839-bc10c3358524.jpg
+2026-06-20 18:05:49,832 [INFO] Extracted Text: 03/2028
+2026-06-20 18:07:07,249 [INFO] Logging successfully configured. Saving logs to: logs/rl_all.log
+2026-06-20 18:07:07,250 [INFO] Initializing Pipeline Manager...
+2026-06-20 18:07:07,251 [INFO] Initializing DateDetector with weights: /bakha/vhome/gpyda/scratch/Deep_Learning_Project/runs/detect/outputs/detector/run_20260620_170339/weights/best.pt
+2026-06-20 18:07:07,564 [INFO] Initializing EasyOCR with languages: ['en']
+2026-06-20 18:07:08,617 [INFO] Pipeline initialized successfully.
+2026-06-20 18:07:08,619 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164132.jpg
+2026-06-20 18:07:08,878 [INFO] Extracted Text: 26-05-2027
+2026-06-20 18:07:08,886 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164142.jpg
+2026-06-20 18:07:08,979 [INFO] Extracted Text: 62/08/27
+2026-06-20 18:07:08,988 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164152.jpg
+2026-06-20 18:07:09,070 [INFO] Extracted Text: 
+2026-06-20 18:07:09,080 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164156.jpg
+2026-06-20 18:07:09,168 [INFO] Extracted Text: icem: 10.2028
+2026-06-20 18:07:09,178 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164210.jpg
+2026-06-20 18:07:09,261 [INFO] Extracted Text: 28-04-202-
+2026-06-20 18:07:09,271 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164221.jpg
+2026-06-20 18:07:09,346 [WARNING] No expiry date found on the image.
+2026-06-20 18:07:09,356 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164242.jpg
+2026-06-20 18:07:09,437 [INFO] Extracted Text: 
+2026-06-20 18:07:09,447 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164253.jpg
+2026-06-20 18:07:09,535 [INFO] Extracted Text: 2306.2026
+2026-06-20 18:07:09,545 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164311.jpg
+2026-06-20 18:07:09,621 [WARNING] No expiry date found on the image.
+2026-06-20 18:07:09,630 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/20260620_164318.jpg
+2026-06-20 18:07:09,695 [WARNING] No expiry date found on the image.
+2026-06-20 18:07:09,704 [INFO] Processing image: /sekhemet/scratch/gpyda/Deep_Learning_Project/reallife_pictures/73e2498c-93f5-4aec-b839-bc10c3358524.jpg
+2026-06-20 18:07:09,738 [INFO] Extracted Text: 03/2028

@@ -1,0 +1,16 @@
+seed: 42
+logging_path: "logs/datasets/dataset_preprocessor.log"
+split_ratio:
+  train: 0.8
+  val: 0.1
+  test: 0.1
+
+directories:
+  raw_dir: "data/raw"
+  output_dir: "data/processed_only_korean"
+
+datasets:
+  kaggle_korean:
+    source_id: "kimhyeongminkhu/korean-expiry-date-ocr"
+    raw_path: "data/raw/kaggle_korean"
+    data_type: "kaggle_yolo_nested"

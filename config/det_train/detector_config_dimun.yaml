@@ -1,0 +1,19 @@
+# YOLOv8 Architecture Configuration
+logging_path: "logs/detector/train_detector_dimun.log"
+model:
+  weights: 'yolov8m.pt' # Use 'yolov8s.pt' or 'yolov8m.pt' for better accuracy at the cost of speed
+
+# Dataset Configuration
+data:
+  dataset_yaml: "data/processed_only_dimun/dataset.yaml"
+
+# Training Hyperparameters
+training:
+  epochs: 200
+  batch_size: 32
+  img_size: 640
+  optimizer: "Adam"     # YOLOv8 supports: SGD, Adam, AdamW, NAdam, RAdam, RMSProp
+  learning_rate: 0.001
+  patience: 10           # Early stopping after 10 epochs of no improvement
+  device: "1"             # Leave empty for auto-detection (CUDA/MPS/CPU), or set specific (e.g., "0", "cpu")
+  workers: 4             # Number of dataloader workers

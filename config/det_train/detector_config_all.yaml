@@ -1,0 +1,19 @@
+# YOLOv8 Architecture Configuration
+logging_path: "logs/detector/train_detector_all.log"  # path for logs saving
+model:
+  weights: 'yolov8m.pt'                               # YOLO model to be trained
+
+# Dataset Configuration
+data:
+  dataset_yaml: "data/processed/dataset.yaml"         # path to the processed dataset
+
+# Training Hyperparameters
+training:
+  epochs: 200                                         # number of epochs
+  batch_size: 32                                      # size of batch
+  img_size: 640                                       # image scale
+  optimizer: "Adam"                                   # optimizer (YOLO suppoorts SGD, Adam, AdamW, NAdam, RAdam, RMSProp)
+  learning_rate: 0.001                                # learning rate
+  patience: 10                                        # early stopping criterion
+  device: "0"                                         # device specification (auto-detection if left empty)
+  workers: 4                                          # number of dataloader workers

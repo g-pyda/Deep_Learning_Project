@@ -1,0 +1,17 @@
+seed: 42
+logging_path: "logs/datasets/dataset_preprocessor.log"
+split_ratio:
+  train: 0.8
+  val: 0.1
+  test: 0.1
+
+directories:
+  raw_dir: "data/raw"
+  output_dir: "data/processed_only_dimun"
+
+datasets:
+  hf_dimun:
+    source_id: "dimun/ExpirationDate"
+    file_name: "Products-Real.zip"
+    raw_path: "data/raw/hf_dimun"
+    data_type: "hf_zip"

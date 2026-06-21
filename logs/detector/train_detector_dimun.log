@@ -1,0 +1,45 @@
+2026-06-20 17:03:43,200 [INFO] Logging successfully configured. Saving logs to: logs/detector/train_detector_dimun.log
+2026-06-20 17:03:43,200 [INFO] === Starting Detector Pipeline ===
+2026-06-20 17:03:43,201 [INFO] Configuration saved to outputs/detector/run_20260620_170343/detector_config.yaml
+2026-06-20 17:03:43,201 [INFO] Initializing DateDetector with weights: yolov8m.pt
+2026-06-20 17:03:43,264 [INFO] Initiating YOLO training engine...
+2026-06-20 17:03:43,264 [INFO] Starting YOLO training process...
+2026-06-20 17:03:58,000 [INFO] Epoch [1/200] Completed | mAP@50: 0.3804 | mAP@50-95: 0.2526
+2026-06-20 17:04:04,900 [INFO] Epoch [2/200] Completed | mAP@50: 0.4600 | mAP@50-95: 0.3114
+2026-06-20 17:04:11,852 [INFO] Epoch [3/200] Completed | mAP@50: 0.7930 | mAP@50-95: 0.6149
+2026-06-20 17:04:18,735 [INFO] Epoch [4/200] Completed | mAP@50: 0.7733 | mAP@50-95: 0.6218
+2026-06-20 17:04:24,751 [INFO] Epoch [5/200] Completed | mAP@50: 0.7651 | mAP@50-95: 0.6017
+2026-06-20 17:04:30,798 [INFO] Epoch [6/200] Completed | mAP@50: 0.6685 | mAP@50-95: 0.5249
+2026-06-20 17:04:37,041 [INFO] Epoch [7/200] Completed | mAP@50: 0.3808 | mAP@50-95: 0.2637
+2026-06-20 17:04:43,550 [INFO] Epoch [8/200] Completed | mAP@50: 0.6331 | mAP@50-95: 0.4804
+2026-06-20 17:04:49,597 [INFO] Epoch [9/200] Completed | mAP@50: 0.4826 | mAP@50-95: 0.3856
+2026-06-20 17:04:56,815 [INFO] Epoch [10/200] Completed | mAP@50: 0.7539 | mAP@50-95: 0.6082
+2026-06-20 17:05:03,702 [INFO] Epoch [11/200] Completed | mAP@50: 0.8642 | mAP@50-95: 0.6718
+2026-06-20 17:05:10,633 [INFO] Epoch [12/200] Completed | mAP@50: 0.8896 | mAP@50-95: 0.7386
+2026-06-20 17:05:16,720 [INFO] Epoch [13/200] Completed | mAP@50: 0.8244 | mAP@50-95: 0.6927
+2026-06-20 17:05:22,813 [INFO] Epoch [14/200] Completed | mAP@50: 0.8709 | mAP@50-95: 0.7030
+2026-06-20 17:05:28,886 [INFO] Epoch [15/200] Completed | mAP@50: 0.8033 | mAP@50-95: 0.6191
+2026-06-20 17:05:35,017 [INFO] Epoch [16/200] Completed | mAP@50: 0.8765 | mAP@50-95: 0.7231
+2026-06-20 17:05:41,942 [INFO] Epoch [17/200] Completed | mAP@50: 0.8719 | mAP@50-95: 0.7520
+2026-06-20 17:05:48,871 [INFO] Epoch [18/200] Completed | mAP@50: 0.9521 | mAP@50-95: 0.7912
+2026-06-20 17:05:54,966 [INFO] Epoch [19/200] Completed | mAP@50: 0.9144 | mAP@50-95: 0.7633
+2026-06-20 17:06:02,040 [INFO] Epoch [20/200] Completed | mAP@50: 0.9561 | mAP@50-95: 0.8299
+2026-06-20 17:06:08,168 [INFO] Epoch [21/200] Completed | mAP@50: 0.9390 | mAP@50-95: 0.8096
+2026-06-20 17:06:14,283 [INFO] Epoch [22/200] Completed | mAP@50: 0.9570 | mAP@50-95: 0.8043
+2026-06-20 17:06:20,398 [INFO] Epoch [23/200] Completed | mAP@50: 0.9711 | mAP@50-95: 0.8197
+2026-06-20 17:06:27,342 [INFO] Epoch [24/200] Completed | mAP@50: 0.9769 | mAP@50-95: 0.8361
+2026-06-20 17:06:35,489 [INFO] Epoch [25/200] Completed | mAP@50: 0.9815 | mAP@50-95: 0.8649
+2026-06-20 17:06:41,597 [INFO] Epoch [26/200] Completed | mAP@50: 0.9824 | mAP@50-95: 0.8370
+2026-06-20 17:06:47,654 [INFO] Epoch [27/200] Completed | mAP@50: 0.9842 | mAP@50-95: 0.8544
+2026-06-20 17:06:53,741 [INFO] Epoch [28/200] Completed | mAP@50: 0.9818 | mAP@50-95: 0.8562
+2026-06-20 17:06:59,810 [INFO] Epoch [29/200] Completed | mAP@50: 0.9790 | mAP@50-95: 0.8367
+2026-06-20 17:07:05,891 [INFO] Epoch [30/200] Completed | mAP@50: 0.9735 | mAP@50-95: 0.8636
+2026-06-20 17:07:11,951 [INFO] Epoch [31/200] Completed | mAP@50: 0.9739 | mAP@50-95: 0.8576
+2026-06-20 17:07:18,063 [INFO] Epoch [32/200] Completed | mAP@50: 0.9615 | mAP@50-95: 0.8247
+2026-06-20 17:07:24,123 [INFO] Epoch [33/200] Completed | mAP@50: 0.9788 | mAP@50-95: 0.8619
+2026-06-20 17:07:30,308 [INFO] Epoch [34/200] Completed | mAP@50: 0.9707 | mAP@50-95: 0.8176
+2026-06-20 17:07:36,379 [INFO] Epoch [35/200] Completed | mAP@50: 0.9810 | mAP@50-95: 0.8377
+2026-06-20 17:07:39,152 [INFO] Epoch [36/200] Completed | mAP@50: 0.9814 | mAP@50-95: 0.8627
+2026-06-20 17:07:41,201 [INFO] === Training Completed ===
+2026-06-20 17:07:41,201 [INFO] Best weights and metrics are saved in: outputs/detector/run_20260620_170343/weights/best.pt
+2026-06-20 17:07:41,201 [INFO] Custom progress plot is saved at: outputs/detector/run_20260620_170343/custom_training_progress.png
