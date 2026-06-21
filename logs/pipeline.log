@@ -1,0 +1,27 @@
+2026-05-22 19:31:07,654 [INFO] Logging successfully configured. Saving logs to: logs/pipeline.log
+2026-05-22 19:31:07,654 [INFO] Initializing Pipeline Manager...
+2026-05-22 19:31:07,681 [INFO] Initializing DateDetector with weights: runs\detect\outputs\detector\run_20260522_160740\weights\best.pt
+2026-05-22 19:31:07,927 [INFO] Initializing EasyOCR with languages: ['en']
+2026-05-22 19:31:07,930 [WARNING] Neither CUDA nor MPS are available - defaulting to CPU. Note: This module is much faster with a GPU.
+2026-05-22 19:31:08,009 [WARNING] Downloading detection model, please wait. This may take several minutes depending upon your network connection.
+2026-05-22 19:31:33,089 [INFO] Download complete
+2026-05-22 19:31:33,090 [WARNING] Downloading recognition model, please wait. This may take several minutes depending upon your network connection.
+2026-05-22 19:31:34,373 [INFO] Download complete.
+2026-05-22 19:31:36,223 [INFO] Pipeline initialized successfully.
+2026-05-22 19:31:36,225 [INFO] Processing image: data/processed/images/val/hf_dimun_val_000389.jpg
+2026-05-22 19:31:36,548 [WARNING] No expiry date found on the image.
+2026-05-22 19:32:17,397 [INFO] Logging successfully configured. Saving logs to: logs/pipeline.log
+2026-05-22 19:32:17,397 [INFO] Initializing Pipeline Manager...
+2026-05-22 19:32:17,398 [INFO] Initializing DateDetector with weights: runs\detect\outputs\detector\run_20260522_160740\weights\best.pt
+2026-05-22 19:32:17,441 [INFO] Initializing EasyOCR with languages: ['en']
+2026-05-22 19:32:17,442 [WARNING] Neither CUDA nor MPS are available - defaulting to CPU. Note: This module is much faster with a GPU.
+2026-05-22 19:32:19,259 [INFO] Pipeline initialized successfully.
+2026-05-22 19:32:19,259 [INFO] Processing image: data/processed/images/val/hf_dimun_val_001428.jpg
+2026-05-22 19:32:19,535 [WARNING] No expiry date found on the image.
+2026-05-25 11:47:05,257 [INFO] Logging successfully configured. Saving logs to: logs/pipeline.log
+2026-05-25 11:47:05,257 [INFO] Initializing Pipeline Manager...
+2026-05-25 11:47:05,262 [INFO] Initializing DateDetector with weights: runs\detect\outputs\detector\run_20260522_160740\weights\best.pt
+2026-05-25 11:47:05,654 [INFO] Initializing EasyOCR with languages: ['en']
+2026-05-25 11:47:05,656 [WARNING] Neither CUDA nor MPS are available - defaulting to CPU. Note: This module is much faster with a GPU.
+2026-05-25 11:47:09,220 [INFO] Pipeline initialized successfully.
+2026-05-25 11:47:09,221 [INFO] Processing image: data/processed/images/val/hf_dimun_val_00550.jpg
